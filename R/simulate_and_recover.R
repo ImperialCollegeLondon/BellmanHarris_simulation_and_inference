@@ -42,8 +42,8 @@ for(i in 1:nn){
 
 A[upper.tri(A)] <- 0
 
-A2 = matrix(0,nrow=nn,ncol=nn)
-R=Rt(xx)
+A2 <- matrix(0,nrow=nn,ncol=nn)
+R <- Rt(xx)
 for(i in 1:nn){
   for(j in 1:i){
     A2[,i] <- R[i-j+1]   
