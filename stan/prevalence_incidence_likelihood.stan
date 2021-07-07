@@ -16,8 +16,8 @@ data {
   int inc[N]; 
   real G[N]; 
   real g[N]; 
-  matrix[N,N] C; // ifr
-  matrix[N,B] Basis; // ifr
+  matrix[N,N] C; 
+  matrix[N,B] Basis; 
   real x[N];
 }
 transformed data {
@@ -37,10 +37,7 @@ transformed parameters {
   vector[N] convolution1=rep_vector(0,N);
   vector[N] convolution2=rep_vector(0,N);
   {
-     R[1:N] = exp(Basis*eta);
-  //  for(i in 1:N) {
-  //    R[i] = 1.3 + sin(0.25*x[i]);
-  //  }
+    R[1:N] = exp(Basis*eta);
     for(i in 1:N){
       for(j in 1:i){
         A[i,j] = R[i-j+1];
