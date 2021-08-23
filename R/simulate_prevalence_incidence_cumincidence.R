@@ -48,8 +48,8 @@ Bp[,2] <- G[2] + C[,(2-1):1] * A[,1:(2-1)] * Bp[,1:(2-1)]
 Bi[,1] <- Rt(0) * dbase(0) 
 Bi[,2] <- Rt(xx[2]) * g[2] + C[,(2-1):1] * A[,1:(2-1)] * Bi[,1:(2-1)] 
 
-Bi[,1] <- 1 
-Bi[,2] <- 1 + C[,(2-1):1] * A[,1:(2-1)] * Bi[,1:(2-1)] 
+Bci[,1] <- 1 
+Bci[,2] <- 1 + C[,(2-1):1] * A[,1:(2-1)] * Bci[,1:(2-1)] 
 
 # Step 3 onwards
 pb <- txtProgressBar(min = 0, max = nn, style = 3)
@@ -64,8 +64,8 @@ for(i in 3:nn){
   Bi[,i] <- Rt(xx) * g[i] + convolution2
 
   # Cum Incidence
-  convolution2 <- rowSums(C[,(i-1):1] * A[,1:(i-1)] * Bci[,1:(i-1)], na.rm=T)
-  Bci[,i] <- 1 + convolution2
+  convolution3 <- rowSums(C[,(i-1):1] * A[,1:(i-1)] * Bci[,1:(i-1)], na.rm=T)
+  Bci[,i] <- 1 + convolution3
     
   setTxtProgressBar(pb, i) 
 }
